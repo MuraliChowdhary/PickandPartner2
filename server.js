@@ -26,7 +26,7 @@ app.post('/shorten', async (req, res) => {
     let urlData = await UrlModel.findOne({ originalUrl });
 
     if (urlData) {
-      return res.status(200).json({ shortUrl: `http://localhost:${PORT}/${urlData.shortId}` });
+      return res.status(200).json({ shortUrl: `https://pickandpartner2.onrender.com/${urlData.shortId}` });
     }
 
     urlData = new UrlModel({
@@ -37,7 +37,7 @@ app.post('/shorten', async (req, res) => {
     });
 
     await urlData.save();
-    res.status(201).json({ shortUrl: `http://localhost:${PORT}/${shortId}` });
+    res.status(201).json({ shortUrl: `https://pickandpartner2.onrender.com/${shortId}` });
   } catch (error) {
     console.error("Error creating short URL:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -65,5 +65,5 @@ app.get('/:shortId', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on https://pickandpartner2.onrender.com ${PORT}`);
 });
